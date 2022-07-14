@@ -31,7 +31,7 @@ export default defineEventHandler(async (event) => {
   let result: any = JSON.parse(response).data;
   result.forEach((movie) => {
     // movie.genre = movieGenres[movie.genre];
-    movie.genres = { [movie.genres]: movieGenres[movie.genres] };
+    movie.genre = { [movie.genre]: movieGenres[movie.genre] };
   });
   return result;
   // JSON.parse(data.value).data
