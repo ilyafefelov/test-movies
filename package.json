@@ -1,0 +1,21 @@
+{
+  "private": true,
+  "scripts": {
+    "build": "nuxt build",
+    "dev": "nuxt dev",
+    "generate": "nuxt generate",
+    "preview": "nuxt preview"
+  },
+  "devDependencies": {
+    "@unocss/preset-typography": "^0.44.1",
+    "@unocss/preset-web-fonts": "^0.44.1",
+    "@unocss/transformer-directives": "^0.44.1",
+    "axios": "^0.27.2",
+    "nuxt": "^3.0.0-rc.4"
+  },
+  "dependencies": {
+    "@unocss/nuxt": "^0.44.1",
+    "stylus": "^0.58.1",
+    "stylus-loader": "^7.0.0"
+  }
+}
