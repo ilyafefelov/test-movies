@@ -1,8 +1,6 @@
 <template>
     <div>
         <Nav ref="nav"></Nav>
-
-        <!-- results:{{ nav?.searchEl.searchResult }} -->
         <div v-if="nav?.searchEl.searchResult" font-sans flex flex-row flex-wrap justify-center
             class="movie-cont bg-red-600 p-4">
             <div v-if="nav?.searchEl.searchResult.length < 1"> Can't find a movie with this criteria! ;(</div>
@@ -17,16 +15,10 @@
                     <h2 font-mono px-2 m-0 v-html="item.name"></h2>
                 </nuxt-link>
 
-                <!-- {{ item.id }} -->
-
                 <span m-2> {{ item.genres[Object.keys(item.genres)[0]] }} <br /> </span>
                 <div class="p-2 flex items-start justify-start overflow-y-auto rounded-b-sm" v-html="item.description">
                 </div>
-                <!-- <details class="p-4 mt-2 text-sm hover:bg-red-300 cursor-pointer bg-red-200 rounded-b-md">
-                <summary>Більше Про Кино</summary>
-                <div v-html="item.additional" class="h-42 overflow-y-scroll text-base prose prose-truegray xl:text-xl">
-                </div>
-            </details> -->
+
             </div>
 
         </div>
@@ -44,37 +36,21 @@
                     <h2 font-mono px-2 m-0 v-html="item.name"></h2>
                 </nuxt-link>
 
-                <!-- {{ item.id }} -->
-
                 <span m-2> {{ item.genres[Object.keys(item.genres)[0]] }} <br /> </span>
                 <div class="p-2 flex items-start justify-start overflow-y-auto rounded-b-sm" v-html="item.description">
                 </div>
-                <!-- <details class="p-4 mt-2 text-sm hover:bg-red-300 cursor-pointer bg-red-200 rounded-b-md">
-                <summary>Більше Про Кино</summary>
-                <div v-html="item.additional" class="h-42 overflow-y-scroll text-base prose prose-truegray xl:text-xl">
-                </div>
-            </details> -->
+
             </div>
         </div>
-
-
-
     </div>
-
-
-    <!-- </div> -->
 </template>
 
 <script setup>
-
 const nav = ref()
-
 
 const { data } = await useFetch("/api/movies").catch((err) => {
     console.log("error API:", err);
 });
-
-
 
 </script>
 
@@ -86,9 +62,5 @@ const { data } = await useFetch("/api/movies").catch((err) => {
     img{
         width: 100%;
     }
-
-    /* SOLUTION */
-    /* flex: 1; */
-
 }
 </style>

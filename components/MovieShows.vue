@@ -41,7 +41,6 @@
                 </div>
             </div>
         </div>
-
         <BookModal v-show="showModal" @close-modal="showModal = false" :name="movie.name" :booked="booked" />
     </div>
 </template>
@@ -56,14 +55,9 @@ const props = defineProps({
 
 let showDataArr = {};
 
-// console.log("movie:", props.movie);
-
 Object.values(props.movie.shows).forEach((show) => {
-    // console.log("show:", show.showdate)
     showDataArr[show.showdate] = false;
 });
-
-// console.log(showDataArr)
 
 const show = ref(showDataArr);
 const places = ref();
@@ -73,10 +67,7 @@ const movieName = ref();
 const showModal = ref(false);
 const booked = ref();
 
-// console.log("show:", show)
-
 async function showPlaces(id, dat, tim, nam) {
-    console.log("dat:", dat);
     const { data: seats } = await useFetch("/api/showPlaces", {
         params: {
             movie_id: id,
@@ -87,8 +78,6 @@ async function showPlaces(id, dat, tim, nam) {
         console.log("error showplaces API:", err);
     });
     show.value[dat] = true;
-    console.log("show[dat]:", show.value[dat]);
-    console.log("id, dat, tim, nam:", id, dat, tim, nam);
     places.value = seats.value;
     date.value = dat;
     time.value = tim;
@@ -117,5 +106,3 @@ async function bookSeat(e, pageID, row, seat) {
 }
 </script>
 
-<style lang="scss" scoped>
-</style>

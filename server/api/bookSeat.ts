@@ -21,6 +21,5 @@ export default defineEventHandler(async (event) => {
   );
 
   let result: any = JSON.parse(response).data;
-  console.log(result);
   return result;
 });

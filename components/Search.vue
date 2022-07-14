@@ -33,7 +33,7 @@ const searchResult = ref();
 
 watch(
     [name, genres, movieID],
-    async ([newA, newB, newC], [prevA, prevB, prevC]) => {
+    async ([newA, newB, newC]) => {
         const { data } = await useFetch("/api/movies", {
             params: {
                 name: newA ? newA : null,
@@ -43,7 +43,7 @@ watch(
         });
         search.value = data;
         searchResult.value = search.value.value;
-        // if (newA == ('' || undefined) && newB == ('null' || undefined)) searchResult.value = null;
+
         if ((newA == '' || newA == undefined) && (newB == 'null' || newB == undefined) && (newC == '' || newC == undefined)) searchResult.value = null;
 
     }

@@ -10,7 +10,7 @@
             </nuxt-link>
             <img :src="item.image" alt="movie poster" w-full m-x-auto mt-0 h-100
                 class="bg-cover bg-center rounded-t-md" /><br />
-            <!-- {{ item.id }} -->
+
             <h2 font-mono px-2 m-0 v-html="item.name"></h2>
 
             <span m-2> {{ item.genres[Object.keys(item.genres)[0]] }} <br /> </span>
@@ -29,16 +29,13 @@
             <div>
                 <div v-for="(item, i) in places" :key="item" bg-blue-200 m-1 ml-12 w-fit>
                     row: {{ item[0].row }}
-
                     <div flex flex-row>
                         <div @click="
                             bookSeat($event, pageID, item[0].row, seat, item.showdate, time)
-                        " v-for="seat in item[1]" :class="{
-    'bg-green-500': seat.is_free,
-    'pointer-events-none': !seat.is_free,
-}" :key="seat" class="flex flex-row text-xs items-center p-0.5 hover:bg-black hover:text-white cursor-pointer">
+                        " v-for="seat in item[1]"
+                            :class="{ 'bg-green-500': seat.is_free, 'pointer-events-none': !seat.is_free, }" :key="seat"
+                            class="flex flex-row text-xs items-center p-0.5 hover:bg-black hover:text-white cursor-pointer">
                             {{ seat.seat }}
-                            <!-- {{ seat.is_free }} -->
                         </div>
                     </div>
                 </div>
@@ -54,21 +51,17 @@
 definePageMeta({
     pageTransition: {
         name: "slide-left",
-        mode: "in-out", // default is out-in
-        appear: true, // default is false
+        mode: "in-out",
+        appear: true,
     },
 });
-
-
 
 const places = ref([]);
 const date = ref();
 const time = ref();
-const showModal = ref(false)
-const booked = ref()
-
+const showModal = ref(false);
+const booked = ref();
 const pageID = useRoute().params.id;
-const routeParams = useRoute().params;
 
 const { data } = await useFetch("/api/movies", {
     params: { movie_id: pageID },
@@ -84,7 +77,7 @@ const { data: shows } = await useFetch("/api/movieShows", {
     console.log("error API:", err);
 });
 
-async function showPlaces(id, dat, tim) {
+async function showPlaces(_, dat, tim) {
     const { data: seats } = await useFetch("/api/showPlaces", {
         params: {
             movie_id: pageID,
@@ -115,14 +108,6 @@ async function bookSeat(e, pageID, row, seat) {
     });
     console.log("BOOKED: ", booking.value);
     booked.value = booking.value;
-    // alert(
-    //     `
-    //     You booked a ticket:
-    //     row:${booking.value.row}, 
-    //     seat:${booking.value.seat},
-    //     on ${booking.value.showdate} at ${booking.value.daytime}
-    //     `
-    // );
     showModal.value = true;
     refreshNuxtData();
 }
@@ -130,17 +115,12 @@ async function bookSeat(e, pageID, row, seat) {
 
 <style lang="stylus" scoped>
 .movieInfo {
-    // background: red;
     /deep/ ul{
         li {
             @apply flex flex-row items-center;
-            p{
-                // @apply text-red-500
-            }
         }
     }
 }
-
 /deep/ .rating {
     .key {
     margin-left: 0;

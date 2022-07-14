@@ -31,7 +31,6 @@ export default defineNuxtConfig({
       },
     },
     transformers: [transformerDirective()],
-
     // core options
     shortcuts: [],
     rules: [],

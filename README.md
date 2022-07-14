@@ -1,7 +1,6 @@
 # Demo Movie Site
 
-
-
+using Vue 3, Nuxt 3, UnoCss
 ## Setup
 
 Make sure to install the dependencies:

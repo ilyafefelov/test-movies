@@ -39,7 +39,6 @@ export default defineEventHandler(async (event) => {
   Object.keys(result).forEach((key) => {
     const movie = allMovies.find((movie) => movie.id == key);
 
-    console.log(movie.name);
     result[key] = {
       id: key,
       name: movie.name,
