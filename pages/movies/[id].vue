@@ -13,7 +13,7 @@
 
             <h2 font-mono px-2 m-0 v-html="item.name"></h2>
 
-            <span m-2> {{ item.genres[Object.keys(item.genres)[0]] }} <br /> </span>
+            <span m-2> {{ item.genre[Object.keys(item.genre)[0]] }} <br /> </span>
             <div class="p-2 flex items-start justify-start overflow-y-auto rounded-b-md" v-html="item.description">
             </div>
         </div>
